@@ -1,0 +1,93 @@
+2022-07-31 11:45:00 [    INFO]-^^--^^--^^--^^--^^--^^-处理配置文件test.ini—^^-—^^-—^^-—^^-—^^-—^^- (config.py:17)
+2022-07-31 11:45:00 [    INFO]-^^--^^--^^--^^--^^--^^-正在执行登陆操作—^^-—^^-—^^-—^^-—^^-—^^- (conftest.py:32)
+2022-07-31 11:45:00 [    INFO]     ***正在读取配置文件中的登录信息--- (conftest.py:41)
+2022-07-31 11:45:00 [    INFO]-^^--^^--^^--^^--^^--^^-处理配置文件test.ini—^^-—^^-—^^-—^^-—^^-—^^- (config.py:17)
+2022-07-31 11:45:00 [    INFO]     ***获取配置文件成功--- (conftest.py:64)
+2022-07-31 11:45:00 [    INFO]     ***执行登录操作--- (conftest.py:66)
+2022-07-31 11:45:00 [    INFO]     ***登录成功--- (conftest.py:100)
+2022-07-31 11:45:00 [    INFO]-^^--^^--^^--^^--^^--^^-正在执行库区管理的测试，用例id为：1 用例标题为：获取库区所有类容  —^^-—^^-—^^-—^^-—^^-—^^- (test_wms.py:22)
+2022-07-31 11:45:00 [    INFO]     ***正在发送POST请求--- (test_wms.py:29)
+2022-07-31 11:45:00 [    INFO]     ***正在进行结果判断比较--- (general_func.py:59)
+2022-07-31 11:45:00 [ WARNING]     <××××××>用例执行未通过
+期望的目标值为：['name', '收货暂存区'],
+找到的目标值为:['测试库2', '测试库区2', '测试库区3', '测试库区']
+ 
+用例请求体为：{"pageSize":10,"pageIndex":1,"warehouseName":"","code":"","name":""} 
+请求url为:https://beta-wms.zhican.com/api/v1/warehouse/warehouseArea/list/page 
+请求头为：{'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIyNDciLCJ6Yy11c2VyLWlkIjoyNDcsInpjLXVzZXItbmFtZSI6InBwIiwiZXhwIjoxNjU5MzI1NTAwfQ.MSwnmtIen1tCQSdmWsFptimpw2GEVvcJ0k_3oY8s7eSYW4isHKG1rd0kDJGCLrdMlhh3O9RdU47QvIpX_RpsERJLRCmzCQakMFDuIwjKXlCfcMRfIPEJM9HvTukyw6ZwvN_CIDW-H3UZty-aoZQ3OEnIZkW6k0uVKBIpQY8EQZiQUbzf7oNhJwMxiXfVbzEe8zChHzjOIRHZWyU59iQQpYsDUth7J5z4TZ2N0yeeQpY3f7r9bAMbqt5t-9xbsI3LB14MI2fBKrDGStmTI1K0iBRHNGR6THFBMvaOyU33fFnREYwVwIgF4osdYZZrzDYThPLz9MscQV7zYfcGUIQZFg', 'client-id': 'erp-client', 'system-type': '1', 'current-warehouse-id': '233'} 
+请求方式为：post
+服务器返回为{'success': True, 'errCode': None, 'errMessage': None, 'totalCount': 4, 'pageSize': 10, 'pageIndex': 1, 'data': [{'id': 552, 'warehouseId': 233, 'warehouseName': 'o仓库', 'name': '测试库2', 'code': '60101', 'typeCode': 1, 'typeName': '收货暂存区', 'area': 9, 'deleted': 0, 'updateBy': 247, 'updateName': 'pp', 'updateTime': '2022-07-31 11:40:13'}, {'id': 560, 'warehouseId': 233, 'warehouseName': 'o仓库', 'name': '测试库区2', 'code': '60106', 'typeCode': 2, 'typeName': '备货区', 'area': 0, 'deleted': 0, 'updateBy': 247, 'updateName': 'pp', 'updateTime': '2022-07-30 15:06:48'}, {'id': 555, 'warehouseId': 233, 'warehouseName': 'o仓库', 'name': '测试库区3', 'code': '60104', 'typeCode': 4, 'typeName': '待检区', 'area': 1, 'deleted': 0, 'updateBy': 247, 'updateName': 'pp', 'updateTime': '2022-07-23 23:19:07'}, {'id': 554, 'warehouseId': 233, 'warehouseName': 'o仓库', 'name': '测试库区', 'code': '60103', 'typeCode': 3, 'typeName': '存储区', 'area': 1, 'deleted': 0, 'updateBy': 247, 'updateName': 'pp', 'updateTime': '2022-07-23 23:18:28'}], 'notEmpty': True, 'totalPages': 1, 'empty': False} (general_func.py:92)
+2022-07-31 11:45:00 [    INFO]     <√√√√√√>  测试用例id: 1 标题： 获取库区所有类容  通过 (general_func.py:99)
+2022-07-31 11:45:00 [    INFO]_$__$__$__$__$__$_id: 1 标题: 获取库区所有类容 测试结束_$__$__$_ (general_func.py:100)
+2022-07-31 11:45:01 [    INFO]-^^--^^--^^--^^--^^--^^-正在执行库区管理的测试，用例id为：2 用例标题为：新增库区_收货暂存区  —^^-—^^-—^^-—^^-—^^-—^^- (test_wms.py:22)
+2022-07-31 11:45:01 [    INFO]     ***正在发送POST请求--- (test_wms.py:29)
+2022-07-31 11:45:01 [    INFO]     ***正在进行结果判断比较--- (general_func.py:59)
+2022-07-31 11:45:01 [ WARNING]     <××××××>用例执行未通过
+期望的目标值为：success=false,
+找到的目标值为:<bound method Response.json of <Response [400]>>
+ 
+用例请求体为：{"name":"测试库区","typeCode":1,"typeName":"收货暂存区","area":"10"} 
+请求url为:https://beta-wms.zhican.com/api/v1/warehouse/warehouseArea/add 
+请求头为：{'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIyNDciLCJ6Yy11c2VyLWlkIjoyNDcsInpjLXVzZXItbmFtZSI6InBwIiwiZXhwIjoxNjU5MzI1NTAwfQ.MSwnmtIen1tCQSdmWsFptimpw2GEVvcJ0k_3oY8s7eSYW4isHKG1rd0kDJGCLrdMlhh3O9RdU47QvIpX_RpsERJLRCmzCQakMFDuIwjKXlCfcMRfIPEJM9HvTukyw6ZwvN_CIDW-H3UZty-aoZQ3OEnIZkW6k0uVKBIpQY8EQZiQUbzf7oNhJwMxiXfVbzEe8zChHzjOIRHZWyU59iQQpYsDUth7J5z4TZ2N0yeeQpY3f7r9bAMbqt5t-9xbsI3LB14MI2fBKrDGStmTI1K0iBRHNGR6THFBMvaOyU33fFnREYwVwIgF4osdYZZrzDYThPLz9MscQV7zYfcGUIQZFg', 'client-id': 'erp-client', 'system-type': '1', 'current-warehouse-id': '233'} 
+请求方式为：post
+服务器返回为{'success': False, 'errCode': '12004', 'errMessage': '库区名称重复！'} (general_func.py:68)
+2022-07-31 11:45:01 [    INFO]     <××××××>  测试用例id: 2 标题 新增库区_收货暂存区  未通过 (general_func.py:75)
+2022-07-31 11:45:01 [    INFO]_$__$__$__$__$__$_id: 2 标题: 新增库区_收货暂存区 测试结束_$__$__$_ (general_func.py:76)
+2022-07-31 11:45:01 [    INFO]-^^--^^--^^--^^--^^--^^-正在执行库区管理的测试，用例id为：3 用例标题为：新增库区_备货区  —^^-—^^-—^^-—^^-—^^-—^^- (test_wms.py:22)
+2022-07-31 11:45:01 [    INFO]     ***正在发送POST请求--- (test_wms.py:29)
+2022-07-31 11:45:01 [    INFO]     ***正在进行结果判断比较--- (general_func.py:59)
+2022-07-31 11:45:01 [ WARNING]     <××××××>用例执行未通过
+期望的目标值为：success=true,
+找到的目标值为:<bound method Response.json of <Response [400]>>
+ 
+用例请求体为：{"name":"测试库区2","typeCode":2,"typeName":"备货区","area":"0"} 
+请求url为:https://beta-wms.zhican.com/api/v1/warehouse/warehouseArea/add 
+请求头为：{'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIyNDciLCJ6Yy11c2VyLWlkIjoyNDcsInpjLXVzZXItbmFtZSI6InBwIiwiZXhwIjoxNjU5MzI1NTAwfQ.MSwnmtIen1tCQSdmWsFptimpw2GEVvcJ0k_3oY8s7eSYW4isHKG1rd0kDJGCLrdMlhh3O9RdU47QvIpX_RpsERJLRCmzCQakMFDuIwjKXlCfcMRfIPEJM9HvTukyw6ZwvN_CIDW-H3UZty-aoZQ3OEnIZkW6k0uVKBIpQY8EQZiQUbzf7oNhJwMxiXfVbzEe8zChHzjOIRHZWyU59iQQpYsDUth7J5z4TZ2N0yeeQpY3f7r9bAMbqt5t-9xbsI3LB14MI2fBKrDGStmTI1K0iBRHNGR6THFBMvaOyU33fFnREYwVwIgF4osdYZZrzDYThPLz9MscQV7zYfcGUIQZFg', 'client-id': 'erp-client', 'system-type': '1', 'current-warehouse-id': '233'} 
+请求方式为：post
+服务器返回为{'success': False, 'errCode': '12004', 'errMessage': '库区名称重复！'} (general_func.py:68)
+2022-07-31 11:45:01 [    INFO]     <××××××>  测试用例id: 3 标题 新增库区_备货区  未通过 (general_func.py:75)
+2022-07-31 11:45:01 [    INFO]_$__$__$__$__$__$_id: 3 标题: 新增库区_备货区 测试结束_$__$__$_ (general_func.py:76)
+2022-07-31 11:45:01 [    INFO]-^^--^^--^^--^^--^^--^^-正在执行库区管理的测试，用例id为：4 用例标题为：新增库区_待检区  —^^-—^^-—^^-—^^-—^^-—^^- (test_wms.py:22)
+2022-07-31 11:45:01 [    INFO]     ***正在发送POST请求--- (test_wms.py:29)
+2022-07-31 11:45:01 [    INFO]     ***正在进行结果判断比较--- (general_func.py:59)
+2022-07-31 11:45:01 [ WARNING]     <××××××>用例执行未通过
+期望的目标值为：success=false,
+找到的目标值为:<bound method Response.json of <Response [400]>>
+ 
+用例请求体为：{"name":"测试库区3","typeCode":4,"typeName":"待检区","area":"1"} 
+请求url为:https://beta-wms.zhican.com/api/v1/warehouse/warehouseArea/add 
+请求头为：{'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIyNDciLCJ6Yy11c2VyLWlkIjoyNDcsInpjLXVzZXItbmFtZSI6InBwIiwiZXhwIjoxNjU5MzI1NTAwfQ.MSwnmtIen1tCQSdmWsFptimpw2GEVvcJ0k_3oY8s7eSYW4isHKG1rd0kDJGCLrdMlhh3O9RdU47QvIpX_RpsERJLRCmzCQakMFDuIwjKXlCfcMRfIPEJM9HvTukyw6ZwvN_CIDW-H3UZty-aoZQ3OEnIZkW6k0uVKBIpQY8EQZiQUbzf7oNhJwMxiXfVbzEe8zChHzjOIRHZWyU59iQQpYsDUth7J5z4TZ2N0yeeQpY3f7r9bAMbqt5t-9xbsI3LB14MI2fBKrDGStmTI1K0iBRHNGR6THFBMvaOyU33fFnREYwVwIgF4osdYZZrzDYThPLz9MscQV7zYfcGUIQZFg', 'client-id': 'erp-client', 'system-type': '1', 'current-warehouse-id': '233'} 
+请求方式为：post
+服务器返回为{'success': False, 'errCode': '12004', 'errMessage': '库区名称重复！'} (general_func.py:68)
+2022-07-31 11:45:01 [    INFO]     <××××××>  测试用例id: 4 标题 新增库区_待检区  未通过 (general_func.py:75)
+2022-07-31 11:45:01 [    INFO]_$__$__$__$__$__$_id: 4 标题: 新增库区_待检区 测试结束_$__$__$_ (general_func.py:76)
+2022-07-31 11:45:01 [    INFO]-^^--^^--^^--^^--^^--^^-正在执行库区管理的测试，用例id为：5 用例标题为：删除库区_  —^^-—^^-—^^-—^^-—^^-—^^- (test_wms.py:22)
+2022-07-31 11:45:01 [    INFO]     ***正在发送delete请求--- (test_wms.py:35)
+2022-07-31 11:45:01 [    INFO]     ***正在进行结果判断比较--- (general_func.py:59)
+2022-07-31 11:45:01 [ WARNING]     <××××××>用例执行未通过
+期望的目标值为：success=true,
+找到的目标值为:<bound method Response.json of <Response [400]>>
+ 
+用例请求体为：None 
+请求url为:https://beta-wms.zhican.com/api/v1/warehouse/warehouseArea/delete/553 
+请求头为：{'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIyNDciLCJ6Yy11c2VyLWlkIjoyNDcsInpjLXVzZXItbmFtZSI6InBwIiwiZXhwIjoxNjU5MzI1NTAwfQ.MSwnmtIen1tCQSdmWsFptimpw2GEVvcJ0k_3oY8s7eSYW4isHKG1rd0kDJGCLrdMlhh3O9RdU47QvIpX_RpsERJLRCmzCQakMFDuIwjKXlCfcMRfIPEJM9HvTukyw6ZwvN_CIDW-H3UZty-aoZQ3OEnIZkW6k0uVKBIpQY8EQZiQUbzf7oNhJwMxiXfVbzEe8zChHzjOIRHZWyU59iQQpYsDUth7J5z4TZ2N0yeeQpY3f7r9bAMbqt5t-9xbsI3LB14MI2fBKrDGStmTI1K0iBRHNGR6THFBMvaOyU33fFnREYwVwIgF4osdYZZrzDYThPLz9MscQV7zYfcGUIQZFg', 'client-id': 'erp-client', 'system-type': '1', 'current-warehouse-id': '233'} 
+请求方式为：delete
+服务器返回为{'success': False, 'errCode': '12004', 'errMessage': '库区名称重复！'} (general_func.py:68)
+2022-07-31 11:45:01 [    INFO]     <××××××>  测试用例id: 5 标题 删除库区_  未通过 (general_func.py:75)
+2022-07-31 11:45:01 [    INFO]_$__$__$__$__$__$_id: 5 标题: 删除库区_ 测试结束_$__$__$_ (general_func.py:76)
+2022-07-31 11:45:01 [    INFO]-^^--^^--^^--^^--^^--^^-正在执行库区管理的测试，用例id为：6 用例标题为：修改库区  —^^-—^^-—^^-—^^-—^^-—^^- (test_wms.py:22)
+2022-07-31 11:45:01 [    INFO]     ***正在发送POST请求--- (test_wms.py:29)
+2022-07-31 11:45:01 [    INFO]     ***正在进行结果判断比较--- (general_func.py:59)
+2022-07-31 11:45:01 [    INFO]     <√√√√√√>  测试用例id: 6 标题： 修改库区  通过 (general_func.py:104)
+2022-07-31 11:45:01 [    INFO]_$__$__$__$__$__$_id: 6 标题: 修改库区 测试结束_$__$__$_ (general_func.py:105)
+2022-07-31 11:45:01 [    INFO]-^^--^^--^^--^^--^^--^^-正在执行库区管理的测试，用例id为：7 用例标题为：查询库区_按编号  —^^-—^^-—^^-—^^-—^^-—^^- (test_wms.py:22)
+2022-07-31 11:45:01 [    INFO]     ***正在发送POST请求--- (test_wms.py:29)
+2022-07-31 11:45:01 [    INFO]     ***正在进行结果判断比较--- (general_func.py:59)
+2022-07-31 11:45:01 [    INFO]     <√√√√√√>  测试用例id: 7 标题： 查询库区_按编号  通过 (general_func.py:104)
+2022-07-31 11:45:01 [    INFO]_$__$__$__$__$__$_id: 7 标题: 查询库区_按编号 测试结束_$__$__$_ (general_func.py:105)
+2022-07-31 11:45:01 [    INFO]-^^--^^--^^--^^--^^--^^-正在执行库区管理的测试，用例id为：8 用例标题为：查询库区_按库区名称  —^^-—^^-—^^-—^^-—^^-—^^- (test_wms.py:22)
+2022-07-31 11:45:01 [    INFO]     ***正在发送POST请求--- (test_wms.py:29)
+2022-07-31 11:45:01 [    INFO]     ***正在进行结果判断比较--- (general_func.py:59)
+2022-07-31 11:45:01 [    INFO]     <√√√√√√>  测试用例id: 8 标题： 查询库区_按库区名称  通过 (general_func.py:104)
+2022-07-31 11:45:01 [    INFO]_$__$__$__$__$__$_id: 8 标题: 查询库区_按库区名称 测试结束_$__$__$_ (general_func.py:105)
+2022-07-31 11:45:01 [    INFO]-^^--^^--^^--^^--^^--^^-拷贝日志文件—^^-—^^-—^^-—^^-—^^-—^^- (conftest.py:150)

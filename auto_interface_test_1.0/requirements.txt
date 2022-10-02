@@ -1,0 +1,5 @@
+pytest
+openpyxl
+requests
+ddddocr
+pytest-html

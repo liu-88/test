@@ -1,0 +1,50 @@
+# -*- coding: utf-8 -*-
+# @Time    : 2022/6/4 20:35
+# @Author  : Digua
+# @File    : get_excel.py
+    # def read_excel_data(self) -> [Case,]:
+    #     try:
+    #         logger.info(get_log_sep("从excel获取测试用数据"))
+    #         # 获取xls文件得Book对象（工作空间）
+    #         file = xlrd.open_workbook(self.file_name)
+    #         # 获取xls文件中得第一个sheet表
+    #         result_data = file.sheet_by_name(self.sheet_name)
+    #         # 获取表中得有效行数
+    #         n_rows = result_data.nrows
+    #         # 定义需要返回的数据列表
+    #         tmp = []
+    #         # 遍历excel表的所有行，获取数据，从1（第二行数据）开始，跳过表头
+    #         for i in range(1, n_rows):
+    #             case = Case()
+    #             # 获取测试用例id
+    #             case.case_id = result_data.cell(i, 0).value
+    #             # 获取测试用例标题
+    #             case.title = result_data.cell(i, 1).value
+    #             # 拼接完整测试用例接口url
+    #             url = result_data.cell(i, 4).value
+    #             case.url = ReadConf().get_option(self.option, 'url') + url
+    #             # 获取测试用例数据
+    #             case.data = result_data.cell(i, 3).value
+    #             # 获取测试用例需要的请求方式
+    #             case.method = result_data.cell(i, 5).value
+    #             # 获取测试用例期望的结果值
+    #             case.expected = result_data.cell(i, ).value
+    #             # 将得到的测试用例数据对象添加到临时列表
+    #             tmp.append(case)
+    #         logger.info(get_log_sep("获取测试数据完成"))
+    #         return tmp
+    #     except Exception as e:
+    #         print(e)
+    #         logger.info('打开测试用例失败，原因是:%s' % e)
+    #         return
+    #
+    # def write(self, row, col, value):
+    #     """向excel指定行、列中写数据"""
+    #     wb = xlrd.open_workbook(self.file_name)
+    #     # 将xlrd对象拷贝转化为xlwt对象
+    #     wb = copy(wb)
+    #     # 通过表明获取工作表
+    #     ws = wb.get_sheet(self.sheet_name)
+    #     # 修改工作表
+    #     ws.write(row, col, value)
+    #     wb.save(self.file_name+'_result')

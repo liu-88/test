@@ -1,0 +1,13 @@
+# -*-coding:utf-8-*-
+[maomao]
+url = https://www.baidu.com
+
+[wms]
+password = pp
+user = L6D5K6
+login_url = https://beta-wms.zhican.com/api/v1/users/auth/token
+login_image_url = https://beta-wms.zhican.com/api/v1/users/captcha/img
+headers_Client-id = erp-client
+data = {'errCode': '11003', 'errMessage': '验证码不正确！', 'success': False}
+headers_system-type = 1
+headers_current-warehouse-id = 233
