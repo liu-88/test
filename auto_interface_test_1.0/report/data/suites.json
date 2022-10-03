@@ -1,0 +1,182 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "name" : "suites",
+  "children" : [ {
+    "name" : "testcases",
+    "children" : [ {
+      "name" : "test_wms",
+      "children" : [ {
+        "name" : "Test_wms_test",
+        "children" : [ {
+          "name" : "test_kuquguanli[case0]",
+          "uid" : "c020118dd46c6d87",
+          "parentUid" : "664bae4b38cf4377798e0f95e011e89a",
+          "status" : "failed",
+          "time" : {
+            "start" : 1664813821867,
+            "stop" : 1664813821944,
+            "duration" : 77
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "newPassed" : false,
+          "newBroken" : false,
+          "retriesCount" : 0,
+          "retriesStatusChange" : false,
+          "parameters" : [ "<common.do_excel.Case object at 0x000001EC495DF160>" ]
+        }, {
+          "name" : "test_kuquguanli[case1]",
+          "uid" : "cce6c2502cd274d2",
+          "parentUid" : "664bae4b38cf4377798e0f95e011e89a",
+          "status" : "passed",
+          "time" : {
+            "start" : 1664813822114,
+            "stop" : 1664813822183,
+            "duration" : 69
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "newPassed" : false,
+          "newBroken" : false,
+          "retriesCount" : 0,
+          "retriesStatusChange" : false,
+          "parameters" : [ "<common.do_excel.Case object at 0x000001EC495DF130>" ]
+        }, {
+          "name" : "test_kuquguanli[case2]",
+          "uid" : "cacfc9d4cd9d5b93",
+          "parentUid" : "664bae4b38cf4377798e0f95e011e89a",
+          "status" : "passed",
+          "time" : {
+            "start" : 1664813822196,
+            "stop" : 1664813822272,
+            "duration" : 76
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "newPassed" : false,
+          "newBroken" : false,
+          "retriesCount" : 0,
+          "retriesStatusChange" : false,
+          "parameters" : [ "<common.do_excel.Case object at 0x000001EC495DF100>" ]
+        }, {
+          "name" : "test_kuquguanli[case3]",
+          "uid" : "78bad478ea3bcb31",
+          "parentUid" : "664bae4b38cf4377798e0f95e011e89a",
+          "status" : "failed",
+          "time" : {
+            "start" : 1664813822277,
+            "stop" : 1664813822351,
+            "duration" : 74
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "newPassed" : false,
+          "newBroken" : false,
+          "retriesCount" : 0,
+          "retriesStatusChange" : false,
+          "parameters" : [ "<common.do_excel.Case object at 0x000001EC495DF0D0>" ]
+        }, {
+          "name" : "test_kuquguanli[case4]",
+          "uid" : "e0bdc64f3b3954ac",
+          "parentUid" : "664bae4b38cf4377798e0f95e011e89a",
+          "status" : "failed",
+          "time" : {
+            "start" : 1664813822359,
+            "stop" : 1664813822425,
+            "duration" : 66
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "newPassed" : false,
+          "newBroken" : false,
+          "retriesCount" : 0,
+          "retriesStatusChange" : false,
+          "parameters" : [ "<common.do_excel.Case object at 0x000001EC495ADD00>" ]
+        }, {
+          "name" : "test_kuquguanli[case5]",
+          "uid" : "6c7af974e83e7eb8",
+          "parentUid" : "664bae4b38cf4377798e0f95e011e89a",
+          "status" : "passed",
+          "time" : {
+            "start" : 1664813822439,
+            "stop" : 1664813822516,
+            "duration" : 77
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "newPassed" : false,
+          "newBroken" : false,
+          "retriesCount" : 0,
+          "retriesStatusChange" : false,
+          "parameters" : [ "<common.do_excel.Case object at 0x000001EC480D6EB0>" ]
+        }, {
+          "name" : "test_kuquguanli[case6]",
+          "uid" : "adb3c8233e485b12",
+          "parentUid" : "664bae4b38cf4377798e0f95e011e89a",
+          "status" : "passed",
+          "time" : {
+            "start" : 1664813822528,
+            "stop" : 1664813822597,
+            "duration" : 69
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "newPassed" : false,
+          "newBroken" : false,
+          "retriesCount" : 0,
+          "retriesStatusChange" : false,
+          "parameters" : [ "<common.do_excel.Case object at 0x000001EC480D6E50>" ]
+        }, {
+          "name" : "test_kuquguanli[case7]",
+          "uid" : "5c1beafd6017782e",
+          "parentUid" : "664bae4b38cf4377798e0f95e011e89a",
+          "status" : "passed",
+          "time" : {
+            "start" : 1664813822605,
+            "stop" : 1664813822668,
+            "duration" : 63
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "newPassed" : false,
+          "newBroken" : false,
+          "retriesCount" : 0,
+          "retriesStatusChange" : false,
+          "parameters" : [ "<common.do_excel.Case object at 0x000001EC4957F460>" ]
+        } ],
+        "uid" : "664bae4b38cf4377798e0f95e011e89a"
+      } ],
+      "uid" : "6df255f1234eacfaedc96a68e610dd28"
+    } ],
+    "uid" : "b51346658ccdb9db01a6b5f6c12deab1"
+  }, {
+    "name" : "testcases.wms_schedule",
+    "children" : [ {
+      "name" : "test_wms_schedule",
+      "children" : [ {
+        "name" : "TestWmsSchedule",
+        "children" : [ {
+          "name" : "test_wms_schedule_create[case0]",
+          "uid" : "41e0e07e88973d64",
+          "parentUid" : "9e49daaba0ea0561f912ab5889fd193e",
+          "status" : "passed",
+          "time" : {
+            "start" : 1664813822672,
+            "stop" : 1664813822672,
+            "duration" : 0
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "newPassed" : false,
+          "newBroken" : false,
+          "retriesCount" : 0,
+          "retriesStatusChange" : false,
+          "parameters" : [ "<common.do_excel.Case object at 0x000001EC480E6130>" ]
+        } ],
+        "uid" : "9e49daaba0ea0561f912ab5889fd193e"
+      } ],
+      "uid" : "46e87fdfe3410ebef57b29eb966fa93d"
+    } ],
+    "uid" : "d67627e5f05d3ad3cda655fef488482c"
+  } ]
+}

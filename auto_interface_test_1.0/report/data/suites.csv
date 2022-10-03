@@ -1,0 +1,55 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue Oct 04 00:17:02 CST 2022","Tue Oct 04 00:17:02 CST 2022","0","testcases.wms_schedule","test_wms_schedule","TestWmsSchedule","","","test_wms_schedule_create[case0]","
+        创建出库通知
+        :param login_system:
+        :param case:
+        :return:
+        "
+"failed","Tue Oct 04 00:17:02 CST 2022","Tue Oct 04 00:17:02 CST 2022","74","testcases","test_wms","Test_wms_test","","","test_kuquguanli[case3]","
+        执行库区管理的测试
+        :param login_system:
+        :param case:
+        :return:
+        "
+"passed","Tue Oct 04 00:17:02 CST 2022","Tue Oct 04 00:17:02 CST 2022","69","testcases","test_wms","Test_wms_test","","","test_kuquguanli[case6]","
+        执行库区管理的测试
+        :param login_system:
+        :param case:
+        :return:
+        "
+"passed","Tue Oct 04 00:17:02 CST 2022","Tue Oct 04 00:17:02 CST 2022","63","testcases","test_wms","Test_wms_test","","","test_kuquguanli[case7]","
+        执行库区管理的测试
+        :param login_system:
+        :param case:
+        :return:
+        "
+"passed","Tue Oct 04 00:17:02 CST 2022","Tue Oct 04 00:17:02 CST 2022","76","testcases","test_wms","Test_wms_test","","","test_kuquguanli[case2]","
+        执行库区管理的测试
+        :param login_system:
+        :param case:
+        :return:
+        "
+"passed","Tue Oct 04 00:17:02 CST 2022","Tue Oct 04 00:17:02 CST 2022","69","testcases","test_wms","Test_wms_test","","","test_kuquguanli[case1]","
+        执行库区管理的测试
+        :param login_system:
+        :param case:
+        :return:
+        "
+"passed","Tue Oct 04 00:17:02 CST 2022","Tue Oct 04 00:17:02 CST 2022","77","testcases","test_wms","Test_wms_test","","","test_kuquguanli[case5]","
+        执行库区管理的测试
+        :param login_system:
+        :param case:
+        :return:
+        "
+"failed","Tue Oct 04 00:17:01 CST 2022","Tue Oct 04 00:17:01 CST 2022","77","testcases","test_wms","Test_wms_test","","","test_kuquguanli[case0]","
+        执行库区管理的测试
+        :param login_system:
+        :param case:
+        :return:
+        "
+"failed","Tue Oct 04 00:17:02 CST 2022","Tue Oct 04 00:17:02 CST 2022","66","testcases","test_wms","Test_wms_test","","","test_kuquguanli[case4]","
+        执行库区管理的测试
+        :param login_system:
+        :param case:
+        :return:
+        "
