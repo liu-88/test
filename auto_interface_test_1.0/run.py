@@ -8,4 +8,6 @@ import os
 
 if __name__ == '__main__':
     pytest.main()
-    os.system('allure generate /var/lib/jenkins/workspace/pythonAPI/results -o /var/lib/jenkins/workspace/pythonAPI/report --clean')
+    if __name__ == "__main__":
+        # 执行pytest单元测试，生成Allure报告需要的数据存在/allure-results目录
+        pytest.main(["-q", './testcases', '--alluredir', './allure-results'])  # CASE_DIR 用例目录
