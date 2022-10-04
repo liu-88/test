@@ -8,4 +8,4 @@ import os
 
 if __name__ == '__main__':
     pytest.main()
-    os.system('allure generate ./results -o ./var/lib/jenkins/workspace/pythonAPI/report --clean')
+    os.system('allure generate /var/lib/jenkins/workspace/pythonAPI/results -o /var/lib/jenkins/workspace/pythonAPI/report --clean')
