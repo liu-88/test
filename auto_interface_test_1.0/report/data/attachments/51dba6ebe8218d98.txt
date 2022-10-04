@@ -1,5 +1,0 @@
-INFO     common.logUtil:test_wms.py:23 -^^--^^--^^--^^--^^--^^-正在执行库区管理的测试，用例id为：2 用例标题为：新增库区_收货暂存区  —^^-—^^-—^^-—^^-—^^-—^^-
-INFO     common.logUtil:test_wms.py:30      ***正在发送POST请求---
-INFO     common.logUtil:general_func.py:59      ***正在进行结果判断比较---
-INFO     common.logUtil:general_func.py:104      <√√√√√√>  测试用例id: 2 标题： 新增库区_收货暂存区  通过
-INFO     common.logUtil:general_func.py:105 _$__$__$__$__$__$_id: 2 标题: 新增库区_收货暂存区 测试结束_$__$__$_
