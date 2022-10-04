@@ -1,0 +1,20 @@
+INFO     common.logUtil:conftest.py:32 -^^--^^--^^--^^--^^--^^-正在执行登陆操作—^^-—^^-—^^-—^^-—^^-—^^-
+INFO     common.logUtil:conftest.py:41      ***正在读取配置文件中的登录信息---
+INFO     common.logUtil:config.py:17 -^^--^^--^^--^^--^^--^^-处理配置文件test.ini—^^-—^^-—^^-—^^-—^^-—^^-
+INFO     common.logUtil:conftest.py:64      ***获取配置文件成功---
+INFO     common.logUtil:conftest.py:66      ***执行登录操作---
+INFO     common.logUtil:conftest.py:100      ***登录成功---
+INFO     common.logUtil:test_wms.py:23 -^^--^^--^^--^^--^^--^^-正在执行库区管理的测试，用例id为：1 用例标题为：获取库区所有类容  —^^-—^^-—^^-—^^-—^^-—^^-
+INFO     common.logUtil:test_wms.py:30      ***正在发送POST请求---
+INFO     common.logUtil:general_func.py:59      ***正在进行结果判断比较---
+WARNING  common.logUtil:general_func.py:92      <××××××>用例执行未通过
+期望的目标值为：['id', '555'],
+找到的目标值为:['958', '957', '955', '956', '954', '953', '949', '938']
+ 
+用例请求体为：{"pageSize":10,"pageIndex":1,"warehouseName":"","code":"","name":""} 
+请求url为:https://beta-wms.zhican.com/api/v1/warehouse/warehouseArea/list/page 
+请求头为：{'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIyNDciLCJ6Yy11c2VyLWlkIjoyNDcsInpjLXVzZXItbmFtZSI6InBwIiwiZXhwIjoxNjY0OTgyNzE4fQ.Ngo745CgVe5OdBeAOFuBe0BcNBO1pjnVlijQyc2OoPVn3IoA2GBrLvLrteHCShaPbmXyaA2FedA_t1x0Lk0SILmmhqmdvW2blX_xC7c04mwGHZlj3kXiwd-YUNSpLT-lCyrBSEnA_g9wb1iEPBSILtvAiaQ8nhgU_RGiODELtjQIDFHMIGLUZTCvtXmiD0odmKYIUhCcC9wItzjV2asJniQVEof_kGswLyEV8mN96AQrx7Iv7GPkTYUOopgPhM03ELx_rGkt5OrAIXS3vClHzu3eJBjI5-t2xtt4VnwfDzuRNbQqdZMWeAZFTp25VcL8KWAUgYMaZSs7umSSopnxuA', 'client-id': 'erp-client', 'system-type': '1', 'current-warehouse-id': '233'} 
+请求方式为：post
+服务器返回为{'success': True, 'errCode': None, 'errMessage': None, 'totalCount': 8, 'pageSize': 10, 'pageIndex': 1, 'data': [{'id': 958, 'warehouseId': 233, 'warehouseName': 'o仓库', 'name': '测试库区99', 'code': '60111', 'typeCode': 5, 'typeName': '退货区', 'area': 200, 'deleted': 0, 'updateBy': 247, 'updateName': 'pp', 'updateTime': '2022-10-04 09:59:44'}, {'id': 957, 'warehouseId': 233, 'warehouseName': 'o仓库', 'name': '测试库区00', 'code': '60110', 'typeCode': 1, 'typeName': '收货暂存区', 'area': 10, 'deleted': 0, 'updateBy': 247, 'updateName': 'pp', 'updateTime': '2022-10-04 09:56:43'}, {'id': 955, 'warehouseId': 233, 'warehouseName': 'o仓库', 'name': '测试库区2', 'code': '60108', 'typeCode': 2, 'typeName': '备货区', 'area': 0, 'deleted': 0, 'updateBy': 247, 'updateName': 'pp', 'updateTime': '2022-10-04 00:17:02'}, {'id': 956, 'warehouseId': 233, 'warehouseName': 'o仓库', 'name': '测试库区3', 'code': '60109', 'typeCode': 4, 'typeName': '待检区', 'area': 1, 'deleted': 0, 'updateBy': 247, 'updateName': 'pp', 'updateTime': '2022-10-04 00:17:02'}, {'id': 954, 'warehouseId': 233, 'warehouseName': 'o仓库', 'name': '凉凉', 'code': '60107', 'typeCode': 3, 'typeName': '存储区', 'area': 10, 'deleted': 0, 'updateBy': 247, 'updateName': 'pp', 'updateTime': '2022-10-03 22:43:45'}, {'id': 953, 'warehouseId': 233, 'warehouseName': 'o仓库', 'name': 'ce测试库区09', 'code': '60106', 'typeCode': 1, 'typeName': '收货暂存区', 'area': 100, 'deleted': 0, 'updateBy': 247, 'updateName': 'pp', 'updateTime': '2022-09-29 23:05:04'}, {'id': 949, 'warehouseId': 233, 'warehouseName': 'o仓库', 'name': '测试库区', 'code': '60102', 'typeCode': 1, 'typeName': '收货暂存区', 'area': 10, 'deleted': 0, 'updateBy': 247, 'updateName': 'pp', 'updateTime': '2022-09-23 21:00:29'}, {'id': 938, 'warehouseId': 233, 'warehouseName': 'o仓库', 'name': '测试库区1', 'code': '60101', 'typeCode': 1, 'typeName': '收货暂存区', 'area': 1, 'deleted': 0, 'updateBy': 247, 'updateName': 'pp', 'updateTime': '2022-08-02 00:22:39'}], 'notEmpty': True, 'totalPages': 1, 'empty': False}
+INFO     common.logUtil:general_func.py:99      <√√√√√√>  测试用例id: 1 标题： 获取库区所有类容  通过
+INFO     common.logUtil:general_func.py:100 _$__$__$__$__$__$_id: 1 标题: 获取库区所有类容 测试结束_$__$__$_
