@@ -12,4 +12,4 @@ if __name__ == '__main__':
     if __name__ == "__main__":
         # 执行pytest单元测试，生成Allure报告需要的数据存在/allure-results目录
         pytest.main()  # CASE_DIR 用例目录
-        os.system('allure generate ./allure-results -o ./allure-report --clean')
+        os.system('allure generate ${workspace}/allure-results -o ${workspace}/allure-report --clean')
