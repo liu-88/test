@@ -1,0 +1,1 @@
+[{"code": 1, "name": "收货暂存区"}, {"code": 2, "name": "备货区"}, {"code": 3, "name": "存储区"}, {"code": 4, "name": "待检区"}, {"code": 5, "name": "退货区"}, {"code": 6, "name": "冷冻区"}, {"code": 7, "name": "冷藏区"}, {"code": 8, "name": "报废区"}]

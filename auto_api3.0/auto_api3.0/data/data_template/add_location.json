@@ -1,0 +1,31 @@
+{
+  "dependent": ["warehouseAreaId","useType","type"],
+  "warehouseAreaId": {
+    "source": "area_info.json",
+    "check": ["warehouseAreaName"],
+    "check_source": ["name"],
+    "source_field": "id"
+  },
+  "warehouseAreaName":"测试库区",
+  "name":"cdsh",
+  "useType":{
+    "source": "warm_area_type.json",
+    "check": ["useTypeName"],
+    "check_source": ["name"],
+    "source_field": "code"
+  },
+  "useTypeName":"冷冻区",
+  "type":{
+    "source": "location_area_type.json",
+    "check": ["typeName"],
+    "check_source": ["name"],
+    "source_field": "code"
+  },
+  "typeName":"收货暂存区",
+  "maximumWeight":"10",
+  "maximumStorage":"1000",
+  "length":"1",
+  "wide":"1",
+  "high":"1",
+  "maximumVolume":"1"
+}

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Test Report</title>
+    <style>body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  /* do not increase min-width as some may use split screens */
+  min-width: 800px;
+  color: #999;
+}
+
+h1 {
+  font-size: 24px;
+  color: black;
+}
+
+h2 {
+  font-size: 16px;
+  color: black;
+}
+
+p {
+  color: black;
+}
+
+a {
+  color: #999;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/******************************
+ * SUMMARY INFORMATION
+ ******************************/
+#environment td {
+  padding: 5px;
+  border: 1px solid #E6E6E6;
+}
+#environment tr:nth-child(odd) {
+  background-color: #f6f6f6;
+}
+
+/******************************
+ * TEST RESULT COLORS
+ ******************************/
+span.passed,
+.passed .col-result {
+  color: green;
+}
+
+span.skipped,
+span.xfailed,
+span.rerun,
+.skipped .col-result,
+.xfailed .col-result,
+.rerun .col-result {
+  color: orange;
+}
+
+span.error,
+span.failed,
+span.xpassed,
+.error .col-result,
+.failed .col-result,
+.xpassed .col-result {
+  color: red;
+}
+
+/******************************
+ * RESULTS TABLE
+ *
+ * 1. Table Layout
+ * 2. Extra
+ * 3. Sorting items
+ *
+ ******************************/
+/*------------------
+ * 1. Table Layout
+ *------------------*/
+#results-table {
+  border: 1px solid #e6e6e6;
+  color: #999;
+  font-size: 12px;
+  width: 100%;
+}
+#results-table th,
+#results-table td {
+  padding: 5px;
+  border: 1px solid #E6E6E6;
+  text-align: left;
+}
+#results-table th {
+  font-weight: bold;
+}
+
+/*------------------
+ * 2. Extra
+ *------------------*/
+.log {
+  background-color: #e6e6e6;
+  border: 1px solid #e6e6e6;
+  color: black;
+  display: block;
+  font-family: "Courier New", Courier, monospace;
+  height: 230px;
+  overflow-y: scroll;
+  padding: 5px;
+  white-space: pre-wrap;
+}
+.log:only-child {
+  height: inherit;
+}
+
+div.image {
+  border: 1px solid #e6e6e6;
+  float: right;
+  height: 240px;
+  margin-left: 5px;
+  overflow: hidden;
+  width: 320px;
+}
+div.image img {
+  width: 320px;
+}
+
+div.video {
+  border: 1px solid #e6e6e6;
+  float: right;
+  height: 240px;
+  margin-left: 5px;
+  overflow: hidden;
+  width: 320px;
+}
+div.video video {
+  overflow: hidden;
+  width: 320px;
+  height: 240px;
+}
+
+.collapsed {
+  display: none;
+}
+
+.expander::after {
+  content: " (show details)";
+  color: #BBB;
+  font-style: italic;
+  cursor: pointer;
+}
+
+.collapser::after {
+  content: " (hide details)";
+  color: #BBB;
+  font-style: italic;
+  cursor: pointer;
+}
+
+/*------------------
+ * 3. Sorting items
+ *------------------*/
+.sortable {
+  cursor: pointer;
+}
+
+.sort-icon {
+  font-size: 0px;
+  float: left;
+  margin-right: 5px;
+  margin-top: 5px;
+  /*triangle*/
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+}
+.inactive .sort-icon {
+  /*finish triangle*/
+  border-top: 8px solid #E6E6E6;
+}
+.asc.active .sort-icon {
+  /*finish triangle*/
+  border-bottom: 8px solid #999;
+}
+.desc.active .sort-icon {
+  /*finish triangle*/
+  border-top: 8px solid #999;
+}
+</style></head>
+  <body onLoad="init()">
+    <script>/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+
+function toArray(iter) {
+    if (iter === null) {
+        return null;
+    }
+    return Array.prototype.slice.call(iter);
+}
+
+function find(selector, elem) { // eslint-disable-line no-redeclare
+    if (!elem) {
+        elem = document;
+    }
+    return elem.querySelector(selector);
+}
+
+function findAll(selector, elem) {
+    if (!elem) {
+        elem = document;
+    }
+    return toArray(elem.querySelectorAll(selector));
+}
+
+function sortColumn(elem) {
+    toggleSortStates(elem);
+    const colIndex = toArray(elem.parentNode.childNodes).indexOf(elem);
+    let key;
+    if (elem.classList.contains('result')) {
+        key = keyResult;
+    } else if (elem.classList.contains('links')) {
+        key = keyLink;
+    } else {
+        key = keyAlpha;
+    }
+    sortTable(elem, key(colIndex));
+}
+
+function showAllExtras() { // eslint-disable-line no-unused-vars
+    findAll('.col-result').forEach(showExtras);
+}
+
+function hideAllExtras() { // eslint-disable-line no-unused-vars
+    findAll('.col-result').forEach(hideExtras);
+}
+
+function showExtras(colresultElem) {
+    const extras = colresultElem.parentNode.nextElementSibling;
+    const expandcollapse = colresultElem.firstElementChild;
+    extras.classList.remove('collapsed');
+    expandcollapse.classList.remove('expander');
+    expandcollapse.classList.add('collapser');
+}
+
+function hideExtras(colresultElem) {
+    const extras = colresultElem.parentNode.nextElementSibling;
+    const expandcollapse = colresultElem.firstElementChild;
+    extras.classList.add('collapsed');
+    expandcollapse.classList.remove('collapser');
+    expandcollapse.classList.add('expander');
+}
+
+function showFilters() {
+    const filterItems = document.getElementsByClassName('filter');
+    for (let i = 0; i < filterItems.length; i++)
+        filterItems[i].hidden = false;
+}
+
+function addCollapse() {
+    // Add links for show/hide all
+    const resulttable = find('table#results-table');
+    const showhideall = document.createElement('p');
+    showhideall.innerHTML = '<a href="javascript:showAllExtras()">Show all details</a> / ' +
+                            '<a href="javascript:hideAllExtras()">Hide all details</a>';
+    resulttable.parentElement.insertBefore(showhideall, resulttable);
+
+    // Add show/hide link to each result
+    findAll('.col-result').forEach(function(elem) {
+        const collapsed = getQueryParameter('collapsed') || 'Passed';
+        const extras = elem.parentNode.nextElementSibling;
+        const expandcollapse = document.createElement('span');
+        if (extras.classList.contains('collapsed')) {
+            expandcollapse.classList.add('expander');
+        } else if (collapsed.includes(elem.innerHTML)) {
+            extras.classList.add('collapsed');
+            expandcollapse.classList.add('expander');
+        } else {
+            expandcollapse.classList.add('collapser');
+        }
+        elem.appendChild(expandcollapse);
+
+        elem.addEventListener('click', function(event) {
+            if (event.currentTarget.parentNode.nextElementSibling.classList.contains('collapsed')) {
+                showExtras(event.currentTarget);
+            } else {
+                hideExtras(event.currentTarget);
+            }
+        });
+    });
+}
+
+function getQueryParameter(name) {
+    const match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function init () { // eslint-disable-line no-unused-vars
+    resetSortHeaders();
+
+    addCollapse();
+
+    showFilters();
+
+    sortColumn(find('.initial-sort'));
+
+    findAll('.sortable').forEach(function(elem) {
+        elem.addEventListener('click',
+            function() {
+                sortColumn(elem);
+            }, false);
+    });
+}
+
+function sortTable(clicked, keyFunc) {
+    const rows = findAll('.results-table-row');
+    const reversed = !clicked.classList.contains('asc');
+    const sortedRows = sort(rows, keyFunc, reversed);
+    /* Whole table is removed here because browsers acts much slower
+     * when appending existing elements.
+     */
+    const thead = document.getElementById('results-table-head');
+    document.getElementById('results-table').remove();
+    const parent = document.createElement('table');
+    parent.id = 'results-table';
+    parent.appendChild(thead);
+    sortedRows.forEach(function(elem) {
+        parent.appendChild(elem);
+    });
+    document.getElementsByTagName('BODY')[0].appendChild(parent);
+}
+
+function sort(items, keyFunc, reversed) {
+    const sortArray = items.map(function(item, i) {
+        return [keyFunc(item), i];
+    });
+
+    sortArray.sort(function(a, b) {
+        const keyA = a[0];
+        const keyB = b[0];
+
+        if (keyA == keyB) return 0;
+
+        if (reversed) {
+            return keyA < keyB ? 1 : -1;
+        } else {
+            return keyA > keyB ? 1 : -1;
+        }
+    });
+
+    return sortArray.map(function(item) {
+        const index = item[1];
+        return items[index];
+    });
+}
+
+function keyAlpha(colIndex) {
+    return function(elem) {
+        return elem.childNodes[1].childNodes[colIndex].firstChild.data.toLowerCase();
+    };
+}
+
+function keyLink(colIndex) {
+    return function(elem) {
+        const dataCell = elem.childNodes[1].childNodes[colIndex].firstChild;
+        return dataCell == null ? '' : dataCell.innerText.toLowerCase();
+    };
+}
+
+function keyResult(colIndex) {
+    return function(elem) {
+        const strings = ['Error', 'Failed', 'Rerun', 'XFailed', 'XPassed',
+            'Skipped', 'Passed'];
+        return strings.indexOf(elem.childNodes[1].childNodes[colIndex].firstChild.data);
+    };
+}
+
+function resetSortHeaders() {
+    findAll('.sort-icon').forEach(function(elem) {
+        elem.parentNode.removeChild(elem);
+    });
+    findAll('.sortable').forEach(function(elem) {
+        const icon = document.createElement('div');
+        icon.className = 'sort-icon';
+        icon.textContent = 'vvv';
+        elem.insertBefore(icon, elem.firstChild);
+        elem.classList.remove('desc', 'active');
+        elem.classList.add('asc', 'inactive');
+    });
+}
+
+function toggleSortStates(elem) {
+    //if active, toggle between asc and desc
+    if (elem.classList.contains('active')) {
+        elem.classList.toggle('asc');
+        elem.classList.toggle('desc');
+    }
+
+    //if inactive, reset all other functions and add ascending active
+    if (elem.classList.contains('inactive')) {
+        resetSortHeaders();
+        elem.classList.remove('inactive');
+        elem.classList.add('active');
+    }
+}
+
+function isAllRowsHidden(value) {
+    return value.hidden == false;
+}
+
+function filterTable(elem) { // eslint-disable-line no-unused-vars
+    const outcomeAtt = 'data-test-result';
+    const outcome = elem.getAttribute(outcomeAtt);
+    const classOutcome = outcome + ' results-table-row';
+    const outcomeRows = document.getElementsByClassName(classOutcome);
+
+    for(let i = 0; i < outcomeRows.length; i++){
+        outcomeRows[i].hidden = !elem.checked;
+    }
+
+    const rows = findAll('.results-table-row').filter(isAllRowsHidden);
+    const allRowsHidden = rows.length == 0 ? true : false;
+    const notFoundMessage = document.getElementById('not-found-message');
+    notFoundMessage.hidden = !allRowsHidden;
+}
+</script>
+    <h1>report.html</h1>
+    <p>Report generated on 23-Sep-2022 at 21:00:29 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.1</p>
+    <h2>Environment</h2>
+    <table id="environment">
+      <tr>
+        <td>Packages</td>
+        <td>{"pluggy": "1.0.0", "py": "1.11.0", "pytest": "7.1.3"}</td></tr>
+      <tr>
+        <td>Platform</td>
+        <td>Windows-10-10.0.22000-SP0</td></tr>
+      <tr>
+        <td>Plugins</td>
+        <td>{"html": "3.1.1", "metadata": "2.0.2"}</td></tr>
+      <tr>
+        <td>Python</td>
+        <td>3.8.8rc1</td></tr></table>
+    <h2>Summary</h2>
+    <p>8 tests ran in 1.82 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">4 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">4 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <h2>Results</h2>
+    <table id="results-table">
+      <thead id="results-table-head">
+        <tr>
+          <th class="sortable result initial-sort" col="result">Result</th>
+          <th class="sortable" col="name">Test</th>
+          <th class="sortable" col="duration">Duration</th>
+          <th class="sortable links" col="links">Links</th></tr>
+        <tr hidden="true" id="not-found-message">
+          <th colspan="4">No results found. Try to check the filters</th></tr></thead>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">testcases/test_wms.py::Test_wms_test::test_kuquguanli[case0]</td>
+          <td class="col-duration">0.61</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;testcases.test_wms.Test_wms_test object at 0x000001EDB4404B50&gt;<br/>login_system = &lt;requests.sessions.Session object at 0x000001EDB4462B20&gt;<br/>case = &lt;common.do_excel.Case object at 0x000001EDB4425790&gt;<br/><br/>    @pytest.mark.parametrize(&quot;case&quot;, wms_case[&quot;库区管理&quot;])<br/>    def test_kuquguanli(self, login_system, case):<br/>        &quot;&quot;&quot;<br/>        执行库区管理的测试<br/>        :param login_system:<br/>        :param case:<br/>        :return:<br/>        &quot;&quot;&quot;<br/>        logger.info(get_start_sep(f&quot;正在执行库区管理的测试，用例id为：{case.case_id} 用例标题为：{case.case_title}  &quot;))<br/>        if case.case_method.lower() == &quot;get&quot;:<br/>            res = login_system.get(case.case_url)<br/>            logger.info(get_setup_sep(&quot;正在发送 GET 请求&quot;))<br/>            res_json = res.json()<br/>            assert judge_expect(res_json, case.case_expected, login_system, case, res)<br/>        elif case.case_method.lower() == &quot;post&quot;:<br/>            logger.info(get_setup_sep(&quot;正在发送POST请求&quot;))<br/>            data = json.loads(case.case_data)<br/>            res = login_system.post(case.case_url, json=data)<br/>            res_json = res.json()<br/>&gt;           assert judge_expect(res_json, case.case_expected, login_system, case, res)<br/><span class="error">E           AssertionError: assert False</span><br/><span class="error">E            +  where False = judge_expect({&#x27;data&#x27;: [{&#x27;area&#x27;: 1, &#x27;code&#x27;: &#x27;60101&#x27;, &#x27;deleted&#x27;: 0, &#x27;id&#x27;: 938, ...}], &#x27;empty&#x27;: False, &#x27;errCode&#x27;: None, &#x27;errMessage&#x27;: None, ...}, &#x27;success=true,id=555,id=554,name=收货暂存区&#x27;, &lt;requests.sessions.Session object at 0x000001EDB4462B20&gt;, &lt;common.do_excel.Case object at 0x000001EDB4425790&gt;, &lt;Response [200]&gt;)</span><br/><span class="error">E            +    where &#x27;success=true,id=555,id=554,name=收货暂存区&#x27; = &lt;common.do_excel.Case object at 0x000001EDB4425790&gt;.case_expected</span><br/><br/>testcases\test_wms.py:34: AssertionError<br/> -----------------------------Captured stdout setup------------------------------ <br/>欢迎使用ddddocr，本项目专注带动行业内卷，个人博客:wenanzhe.com
+训练数据支持来源于:http://146.56.204.113:19199/preview
+爬虫框架feapder可快速一键接入，快速开启爬虫之旅：https://github.com/Boris-code/feapder
+谷歌reCaptcha验证码 / hCaptcha验证码 / funCaptcha验证码商业级识别接口：https://yescaptcha.com/i/NSwk7i
+<br/> -------------------------------Captured log setup------------------------------- <br/>INFO     common.logUtil:conftest.py:32 -^^--^^--^^--^^--^^--^^-正在执行登陆操作—^^-—^^-—^^-—^^-—^^-—^^-
+INFO     common.logUtil:conftest.py:41      ***正在读取配置文件中的登录信息---
+INFO     common.logUtil:config.py:17 -^^--^^--^^--^^--^^--^^-处理配置文件test.ini—^^-—^^-—^^-—^^-—^^-—^^-
+INFO     common.logUtil:conftest.py:64      ***获取配置文件成功---
+INFO     common.logUtil:conftest.py:66      ***执行登录操作---
+INFO     common.logUtil:conftest.py:100      ***登录成功---<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     common.logUtil:test_wms.py:23 -^^--^^--^^--^^--^^--^^-正在执行库区管理的测试，用例id为：1 用例标题为：获取库区所有类容  —^^-—^^-—^^-—^^-—^^-—^^-
+INFO     common.logUtil:test_wms.py:30      ***正在发送POST请求---
+INFO     common.logUtil:general_func.py:59      ***正在进行结果判断比较---
+WARNING  common.logUtil:general_func.py:92      &lt;××××××&gt;用例执行未通过
+期望的目标值为：[&#x27;id&#x27;, &#x27;555&#x27;],
+找到的目标值为:[&#x27;938&#x27;]
+ 
+用例请求体为：{&quot;pageSize&quot;:10,&quot;pageIndex&quot;:1,&quot;warehouseName&quot;:&quot;&quot;,&quot;code&quot;:&quot;&quot;,&quot;name&quot;:&quot;&quot;} 
+请求url为:https://beta-wms.zhican.com/api/v1/warehouse/warehouseArea/list/page 
+请求头为：{&#x27;User-Agent&#x27;: &#x27;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36&#x27;, &#x27;Accept-Encoding&#x27;: &#x27;gzip, deflate&#x27;, &#x27;Accept&#x27;: &#x27;*/*&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;Authorization&#x27;: &#x27;eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIyNDciLCJ6Yy11c2VyLWlkIjoyNDcsInpjLXVzZXItbmFtZSI6InBwIiwiZXhwIjoxNjY0MDI0NDI4fQ.pWcj-qW3H0LngxAbxOT3m8_kbgolp2YHkELDsJYz_vnnt9K024OTWpXKwcUwu2LW7hDsVtAcFA13k9RfAGCz_DTZ4aUiMbRbrOzpEpvnjFkYv7ZFYEjVbxDOHyEiMmQJ6j0uMHspytuaQA_s9wmjoE-bZnyPWCbDjUo7DKVpunQ79R6Dh6RCJeA67Chwp2xwLiZAILAniRjKtwbDxU3-xnpaW_QmApNHHOnLk97zVnojENoxPoLNTbfo3MH6NN5d-gI_5x0DpUj5E5bocXzFZWA5qZk0t0c1BgF1D_krE8IOY_lAGjCvQYuCvGumH7yJjTGRCy1qDHC4aiJvXNvw1g&#x27;, &#x27;client-id&#x27;: &#x27;erp-client&#x27;, &#x27;system-type&#x27;: &#x27;1&#x27;, &#x27;current-warehouse-id&#x27;: &#x27;233&#x27;} 
+请求方式为：post
+服务器返回为{&#x27;success&#x27;: True, &#x27;errCode&#x27;: None, &#x27;errMessage&#x27;: None, &#x27;totalCount&#x27;: 1, &#x27;pageSize&#x27;: 10, &#x27;pageIndex&#x27;: 1, &#x27;data&#x27;: [{&#x27;id&#x27;: 938, &#x27;warehouseId&#x27;: 233, &#x27;warehouseName&#x27;: &#x27;o仓库&#x27;, &#x27;name&#x27;: &#x27;测试库区1&#x27;, &#x27;code&#x27;: &#x27;60101&#x27;, &#x27;typeCode&#x27;: 1, &#x27;typeName&#x27;: &#x27;收货暂存区&#x27;, &#x27;area&#x27;: 1, &#x27;deleted&#x27;: 0, &#x27;updateBy&#x27;: 247, &#x27;updateName&#x27;: &#x27;pp&#x27;, &#x27;updateTime&#x27;: &#x27;2022-08-02 00:22:39&#x27;}], &#x27;notEmpty&#x27;: True, &#x27;totalPages&#x27;: 1, &#x27;empty&#x27;: False}
+INFO     common.logUtil:general_func.py:99      &lt;√√√√√√&gt;  测试用例id: 1 标题： 获取库区所有类容  通过
+INFO     common.logUtil:general_func.py:100 _$__$__$__$__$__$_id: 1 标题: 获取库区所有类容 测试结束_$__$__$_<br/></div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">testcases/test_wms.py::Test_wms_test::test_kuquguanli[case1]</td>
+          <td class="col-duration">0.07</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;testcases.test_wms.Test_wms_test object at 0x000001EDB4404B20&gt;<br/>login_system = &lt;requests.sessions.Session object at 0x000001EDB4462B20&gt;<br/>case = &lt;common.do_excel.Case object at 0x000001EDB4425760&gt;<br/><br/>    @pytest.mark.parametrize(&quot;case&quot;, wms_case[&quot;库区管理&quot;])<br/>    def test_kuquguanli(self, login_system, case):<br/>        &quot;&quot;&quot;<br/>        执行库区管理的测试<br/>        :param login_system:<br/>        :param case:<br/>        :return:<br/>        &quot;&quot;&quot;<br/>        logger.info(get_start_sep(f&quot;正在执行库区管理的测试，用例id为：{case.case_id} 用例标题为：{case.case_title}  &quot;))<br/>        if case.case_method.lower() == &quot;get&quot;:<br/>            res = login_system.get(case.case_url)<br/>            logger.info(get_setup_sep(&quot;正在发送 GET 请求&quot;))<br/>            res_json = res.json()<br/>            assert judge_expect(res_json, case.case_expected, login_system, case, res)<br/>        elif case.case_method.lower() == &quot;post&quot;:<br/>            logger.info(get_setup_sep(&quot;正在发送POST请求&quot;))<br/>            data = json.loads(case.case_data)<br/>            res = login_system.post(case.case_url, json=data)<br/>            res_json = res.json()<br/>&gt;           assert judge_expect(res_json, case.case_expected, login_system, case, res)<br/><span class="error">E           AssertionError: assert False</span><br/><span class="error">E            +  where False = judge_expect({&#x27;data&#x27;: 949, &#x27;errCode&#x27;: None, &#x27;errMessage&#x27;: None, &#x27;success&#x27;: True}, &#x27;success=false&#x27;, &lt;requests.sessions.Session object at 0x000001EDB4462B20&gt;, &lt;common.do_excel.Case object at 0x000001EDB4425760&gt;, &lt;Response [200]&gt;)</span><br/><span class="error">E            +    where &#x27;success=false&#x27; = &lt;common.do_excel.Case object at 0x000001EDB4425760&gt;.case_expected</span><br/><br/>testcases\test_wms.py:34: AssertionError<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     common.logUtil:test_wms.py:23 -^^--^^--^^--^^--^^--^^-正在执行库区管理的测试，用例id为：2 用例标题为：新增库区_收货暂存区  —^^-—^^-—^^-—^^-—^^-—^^-
+INFO     common.logUtil:test_wms.py:30      ***正在发送POST请求---
+INFO     common.logUtil:general_func.py:59      ***正在进行结果判断比较---
+WARNING  common.logUtil:general_func.py:92      &lt;××××××&gt;用例执行未通过
+期望的目标值为：[&#x27;success&#x27;, &#x27;False&#x27;],
+找到的目标值为:[&#x27;True&#x27;]
+ 
+用例请求体为：{&quot;name&quot;:&quot;测试库区&quot;,&quot;typeCode&quot;:1,&quot;typeName&quot;:&quot;收货暂存区&quot;,&quot;area&quot;:&quot;10&quot;} 
+请求url为:https://beta-wms.zhican.com/api/v1/warehouse/warehouseArea/add 
+请求头为：{&#x27;User-Agent&#x27;: &#x27;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36&#x27;, &#x27;Accept-Encoding&#x27;: &#x27;gzip, deflate&#x27;, &#x27;Accept&#x27;: &#x27;*/*&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;Authorization&#x27;: &#x27;eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIyNDciLCJ6Yy11c2VyLWlkIjoyNDcsInpjLXVzZXItbmFtZSI6InBwIiwiZXhwIjoxNjY0MDI0NDI4fQ.pWcj-qW3H0LngxAbxOT3m8_kbgolp2YHkELDsJYz_vnnt9K024OTWpXKwcUwu2LW7hDsVtAcFA13k9RfAGCz_DTZ4aUiMbRbrOzpEpvnjFkYv7ZFYEjVbxDOHyEiMmQJ6j0uMHspytuaQA_s9wmjoE-bZnyPWCbDjUo7DKVpunQ79R6Dh6RCJeA67Chwp2xwLiZAILAniRjKtwbDxU3-xnpaW_QmApNHHOnLk97zVnojENoxPoLNTbfo3MH6NN5d-gI_5x0DpUj5E5bocXzFZWA5qZk0t0c1BgF1D_krE8IOY_lAGjCvQYuCvGumH7yJjTGRCy1qDHC4aiJvXNvw1g&#x27;, &#x27;client-id&#x27;: &#x27;erp-client&#x27;, &#x27;system-type&#x27;: &#x27;1&#x27;, &#x27;current-warehouse-id&#x27;: &#x27;233&#x27;} 
+请求方式为：post
+服务器返回为{&#x27;success&#x27;: True, &#x27;errCode&#x27;: None, &#x27;errMessage&#x27;: None, &#x27;data&#x27;: 949}
+INFO     common.logUtil:general_func.py:99      &lt;√√√√√√&gt;  测试用例id: 2 标题： 新增库区_收货暂存区  通过
+INFO     common.logUtil:general_func.py:100 _$__$__$__$__$__$_id: 2 标题: 新增库区_收货暂存区 测试结束_$__$__$_<br/></div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">testcases/test_wms.py::Test_wms_test::test_kuquguanli[case3]</td>
+          <td class="col-duration">0.07</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;testcases.test_wms.Test_wms_test object at 0x000001EDB4404C70&gt;<br/>login_system = &lt;requests.sessions.Session object at 0x000001EDB4462B20&gt;<br/>case = &lt;common.do_excel.Case object at 0x000001EDB4425850&gt;<br/><br/>    @pytest.mark.parametrize(&quot;case&quot;, wms_case[&quot;库区管理&quot;])<br/>    def test_kuquguanli(self, login_system, case):<br/>        &quot;&quot;&quot;<br/>        执行库区管理的测试<br/>        :param login_system:<br/>        :param case:<br/>        :return:<br/>        &quot;&quot;&quot;<br/>        logger.info(get_start_sep(f&quot;正在执行库区管理的测试，用例id为：{case.case_id} 用例标题为：{case.case_title}  &quot;))<br/>        if case.case_method.lower() == &quot;get&quot;:<br/>            res = login_system.get(case.case_url)<br/>            logger.info(get_setup_sep(&quot;正在发送 GET 请求&quot;))<br/>            res_json = res.json()<br/>            assert judge_expect(res_json, case.case_expected, login_system, case, res)<br/>        elif case.case_method.lower() == &quot;post&quot;:<br/>            logger.info(get_setup_sep(&quot;正在发送POST请求&quot;))<br/>            data = json.loads(case.case_data)<br/>            res = login_system.post(case.case_url, json=data)<br/>            res_json = res.json()<br/>&gt;           assert judge_expect(res_json, case.case_expected, login_system, case, res)<br/><span class="error">E           AssertionError: assert False</span><br/><span class="error">E            +  where False = judge_expect({&#x27;data&#x27;: 951, &#x27;errCode&#x27;: None, &#x27;errMessage&#x27;: None, &#x27;success&#x27;: True}, &#x27;success=false&#x27;, &lt;requests.sessions.Session object at 0x000001EDB4462B20&gt;, &lt;common.do_excel.Case object at 0x000001EDB4425850&gt;, &lt;Response [200]&gt;)</span><br/><span class="error">E            +    where &#x27;success=false&#x27; = &lt;common.do_excel.Case object at 0x000001EDB4425850&gt;.case_expected</span><br/><br/>testcases\test_wms.py:34: AssertionError<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     common.logUtil:test_wms.py:23 -^^--^^--^^--^^--^^--^^-正在执行库区管理的测试，用例id为：4 用例标题为：新增库区_待检区  —^^-—^^-—^^-—^^-—^^-—^^-
+INFO     common.logUtil:test_wms.py:30      ***正在发送POST请求---
+INFO     common.logUtil:general_func.py:59      ***正在进行结果判断比较---
+WARNING  common.logUtil:general_func.py:92      &lt;××××××&gt;用例执行未通过
+期望的目标值为：[&#x27;success&#x27;, &#x27;False&#x27;],
+找到的目标值为:[&#x27;True&#x27;]
+ 
+用例请求体为：{&quot;name&quot;:&quot;测试库区3&quot;,&quot;typeCode&quot;:4,&quot;typeName&quot;:&quot;待检区&quot;,&quot;area&quot;:&quot;1&quot;} 
+请求url为:https://beta-wms.zhican.com/api/v1/warehouse/warehouseArea/add 
+请求头为：{&#x27;User-Agent&#x27;: &#x27;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36&#x27;, &#x27;Accept-Encoding&#x27;: &#x27;gzip, deflate&#x27;, &#x27;Accept&#x27;: &#x27;*/*&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;Authorization&#x27;: &#x27;eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIyNDciLCJ6Yy11c2VyLWlkIjoyNDcsInpjLXVzZXItbmFtZSI6InBwIiwiZXhwIjoxNjY0MDI0NDI4fQ.pWcj-qW3H0LngxAbxOT3m8_kbgolp2YHkELDsJYz_vnnt9K024OTWpXKwcUwu2LW7hDsVtAcFA13k9RfAGCz_DTZ4aUiMbRbrOzpEpvnjFkYv7ZFYEjVbxDOHyEiMmQJ6j0uMHspytuaQA_s9wmjoE-bZnyPWCbDjUo7DKVpunQ79R6Dh6RCJeA67Chwp2xwLiZAILAniRjKtwbDxU3-xnpaW_QmApNHHOnLk97zVnojENoxPoLNTbfo3MH6NN5d-gI_5x0DpUj5E5bocXzFZWA5qZk0t0c1BgF1D_krE8IOY_lAGjCvQYuCvGumH7yJjTGRCy1qDHC4aiJvXNvw1g&#x27;, &#x27;client-id&#x27;: &#x27;erp-client&#x27;, &#x27;system-type&#x27;: &#x27;1&#x27;, &#x27;current-warehouse-id&#x27;: &#x27;233&#x27;} 
+请求方式为：post
+服务器返回为{&#x27;success&#x27;: True, &#x27;errCode&#x27;: None, &#x27;errMessage&#x27;: None, &#x27;data&#x27;: 951}
+INFO     common.logUtil:general_func.py:99      &lt;√√√√√√&gt;  测试用例id: 4 标题： 新增库区_待检区  通过
+INFO     common.logUtil:general_func.py:100 _$__$__$__$__$__$_id: 4 标题: 新增库区_待检区 测试结束_$__$__$_<br/></div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">testcases/test_wms.py::Test_wms_test::test_kuquguanli[case4]</td>
+          <td class="col-duration">0.08</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;testcases.test_wms.Test_wms_test object at 0x000001EDB4404D00&gt;<br/>login_system = &lt;requests.sessions.Session object at 0x000001EDB4462B20&gt;<br/>case = &lt;common.do_excel.Case object at 0x000001EDB2F2A5E0&gt;<br/><br/>    @pytest.mark.parametrize(&quot;case&quot;, wms_case[&quot;库区管理&quot;])<br/>    def test_kuquguanli(self, login_system, case):<br/>        &quot;&quot;&quot;<br/>        执行库区管理的测试<br/>        :param login_system:<br/>        :param case:<br/>        :return:<br/>        &quot;&quot;&quot;<br/>        logger.info(get_start_sep(f&quot;正在执行库区管理的测试，用例id为：{case.case_id} 用例标题为：{case.case_title}  &quot;))<br/>        if case.case_method.lower() == &quot;get&quot;:<br/>            res = login_system.get(case.case_url)<br/>            logger.info(get_setup_sep(&quot;正在发送 GET 请求&quot;))<br/>            res_json = res.json()<br/>            assert judge_expect(res_json, case.case_expected, login_system, case, res)<br/>        elif case.case_method.lower() == &quot;post&quot;:<br/>            logger.info(get_setup_sep(&quot;正在发送POST请求&quot;))<br/>            data = json.loads(case.case_data)<br/>            res = login_system.post(case.case_url, json=data)<br/>            res_json = res.json()<br/>            assert judge_expect(res_json, case.case_expected, login_system, case, res)<br/>        elif case.case_method.lower() == &#x27;delete&#x27;:<br/>            logger.info(get_setup_sep(&quot;正在发送delete请求&quot;))<br/>            res = login_system.delete(case.case_url)<br/>            res_json = res.json()<br/>&gt;           assert judge_expect(res_json, case.case_expected, login_system, case, res)<br/><span class="error">E           AssertionError: assert False</span><br/><span class="error">E            +  where False = judge_expect({&#x27;errCode&#x27;: &#x27;12004&#x27;, &#x27;errMessage&#x27;: &#x27;库区名称重复！&#x27;, &#x27;success&#x27;: False}, &#x27;success=true&#x27;, &lt;requests.sessions.Session object at 0x000001EDB4462B20&gt;, &lt;common.do_excel.Case object at 0x000001EDB2F2A5E0&gt;, &lt;Response [200]&gt;)</span><br/><span class="error">E            +    where &#x27;success=true&#x27; = &lt;common.do_excel.Case object at 0x000001EDB2F2A5E0&gt;.case_expected</span><br/><br/>testcases\test_wms.py:39: AssertionError<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     common.logUtil:test_wms.py:23 -^^--^^--^^--^^--^^--^^-正在执行库区管理的测试，用例id为：5 用例标题为：删除库区_  —^^-—^^-—^^-—^^-—^^-—^^-
+INFO     common.logUtil:test_wms.py:36      ***正在发送delete请求---
+INFO     common.logUtil:general_func.py:59      ***正在进行结果判断比较---
+WARNING  common.logUtil:general_func.py:92      &lt;××××××&gt;用例执行未通过
+期望的目标值为：[&#x27;success&#x27;, &#x27;True&#x27;],
+找到的目标值为:[&#x27;False&#x27;]
+ 
+用例请求体为：None 
+请求url为:https://beta-wms.zhican.com/api/v1/warehouse/warehouseArea/delete/553 
+请求头为：{&#x27;User-Agent&#x27;: &#x27;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36&#x27;, &#x27;Accept-Encoding&#x27;: &#x27;gzip, deflate&#x27;, &#x27;Accept&#x27;: &#x27;*/*&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;Authorization&#x27;: &#x27;eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIyNDciLCJ6Yy11c2VyLWlkIjoyNDcsInpjLXVzZXItbmFtZSI6InBwIiwiZXhwIjoxNjY0MDI0NDI4fQ.pWcj-qW3H0LngxAbxOT3m8_kbgolp2YHkELDsJYz_vnnt9K024OTWpXKwcUwu2LW7hDsVtAcFA13k9RfAGCz_DTZ4aUiMbRbrOzpEpvnjFkYv7ZFYEjVbxDOHyEiMmQJ6j0uMHspytuaQA_s9wmjoE-bZnyPWCbDjUo7DKVpunQ79R6Dh6RCJeA67Chwp2xwLiZAILAniRjKtwbDxU3-xnpaW_QmApNHHOnLk97zVnojENoxPoLNTbfo3MH6NN5d-gI_5x0DpUj5E5bocXzFZWA5qZk0t0c1BgF1D_krE8IOY_lAGjCvQYuCvGumH7yJjTGRCy1qDHC4aiJvXNvw1g&#x27;, &#x27;client-id&#x27;: &#x27;erp-client&#x27;, &#x27;system-type&#x27;: &#x27;1&#x27;, &#x27;current-warehouse-id&#x27;: &#x27;233&#x27;} 
+请求方式为：delete
+服务器返回为{&#x27;success&#x27;: False, &#x27;errCode&#x27;: &#x27;12004&#x27;, &#x27;errMessage&#x27;: &#x27;库区名称重复！&#x27;}
+INFO     common.logUtil:general_func.py:99      &lt;√√√√√√&gt;  测试用例id: 5 标题： 删除库区_  通过
+INFO     common.logUtil:general_func.py:100 _$__$__$__$__$__$_id: 5 标题: 删除库区_ 测试结束_$__$__$_<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">testcases/test_wms.py::Test_wms_test::test_kuquguanli[case2]</td>
+          <td class="col-duration">0.08</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     common.logUtil:test_wms.py:23 -^^--^^--^^--^^--^^--^^-正在执行库区管理的测试，用例id为：3 用例标题为：新增库区_备货区  —^^-—^^-—^^-—^^-—^^-—^^-
+INFO     common.logUtil:test_wms.py:30      ***正在发送POST请求---
+INFO     common.logUtil:general_func.py:59      ***正在进行结果判断比较---
+INFO     common.logUtil:general_func.py:104      &lt;√√√√√√&gt;  测试用例id: 3 标题： 新增库区_备货区  通过
+INFO     common.logUtil:general_func.py:105 _$__$__$__$__$__$_id: 3 标题: 新增库区_备货区 测试结束_$__$__$_<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">testcases/test_wms.py::Test_wms_test::test_kuquguanli[case5]</td>
+          <td class="col-duration">0.06</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     common.logUtil:test_wms.py:23 -^^--^^--^^--^^--^^--^^-正在执行库区管理的测试，用例id为：6 用例标题为：修改库区  —^^-—^^-—^^-—^^-—^^-—^^-
+INFO     common.logUtil:test_wms.py:30      ***正在发送POST请求---
+INFO     common.logUtil:general_func.py:59      ***正在进行结果判断比较---
+INFO     common.logUtil:general_func.py:104      &lt;√√√√√√&gt;  测试用例id: 6 标题： 修改库区  通过
+INFO     common.logUtil:general_func.py:105 _$__$__$__$__$__$_id: 6 标题: 修改库区 测试结束_$__$__$_<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">testcases/test_wms.py::Test_wms_test::test_kuquguanli[case6]</td>
+          <td class="col-duration">0.06</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     common.logUtil:test_wms.py:23 -^^--^^--^^--^^--^^--^^-正在执行库区管理的测试，用例id为：7 用例标题为：查询库区_按编号  —^^-—^^-—^^-—^^-—^^-—^^-
+INFO     common.logUtil:test_wms.py:30      ***正在发送POST请求---
+INFO     common.logUtil:general_func.py:59      ***正在进行结果判断比较---
+INFO     common.logUtil:general_func.py:104      &lt;√√√√√√&gt;  测试用例id: 7 标题： 查询库区_按编号  通过
+INFO     common.logUtil:general_func.py:105 _$__$__$__$__$__$_id: 7 标题: 查询库区_按编号 测试结束_$__$__$_<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">testcases/test_wms.py::Test_wms_test::test_kuquguanli[case7]</td>
+          <td class="col-duration">0.06</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     common.logUtil:test_wms.py:23 -^^--^^--^^--^^--^^--^^-正在执行库区管理的测试，用例id为：8 用例标题为：查询库区_按库区名称  —^^-—^^-—^^-—^^-—^^-—^^-
+INFO     common.logUtil:test_wms.py:30      ***正在发送POST请求---
+INFO     common.logUtil:general_func.py:59      ***正在进行结果判断比较---
+INFO     common.logUtil:general_func.py:104      &lt;√√√√√√&gt;  测试用例id: 8 标题： 查询库区_按库区名称  通过
+INFO     common.logUtil:general_func.py:105 _$__$__$__$__$__$_id: 8 标题: 查询库区_按库区名称 测试结束_$__$__$_<br/> -----------------------------Captured log teardown------------------------------ <br/>INFO     common.logUtil:conftest.py:150 -^^--^^--^^--^^--^^--^^-拷贝日志文件—^^-—^^-—^^-—^^-—^^-—^^-<br/></div></td></tr></tbody></table></body></html>

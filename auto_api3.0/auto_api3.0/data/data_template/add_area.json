@@ -1,0 +1,13 @@
+{
+  "dependent": ["typeCode"],
+  "name":"接口测试库区",
+  "typeCode":
+  {
+    "source": "area_type.json",
+    "check": ["typeName"],
+    "check_source": ["name"],
+    "source_field": "code"
+  },
+  "typeName":"待检区",
+  "area":"100"
+}

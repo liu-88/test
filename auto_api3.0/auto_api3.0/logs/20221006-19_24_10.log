@@ -1,0 +1,193 @@
+2022-10-06 19:24:02 [    INFO]----start--------start--------start--------start--------start--------start----增加库区_收货暂存区----start--------start--------start--------start--------start--------start---- (test_create_area.py:28)
+2022-10-06 19:24:02 [ WARNING]
+用例ID：WMS_KQGL_01
+请求方式：POST
+URL:/api/v1/warehouse/warehouseArea/add
+用例期望值：success=true,errCode=null
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_create_area.py:47)
+2022-10-06 19:24:02 [    INFO]___end______end______end______end______end______end___增加库区_收货暂存区___end______end______end___ (test_create_area.py:48)
+2022-10-06 19:24:02 [    INFO]----start--------start--------start--------start--------start--------start----增加库区_备货区----start--------start--------start--------start--------start--------start---- (test_create_area.py:28)
+2022-10-06 19:24:03 [ WARNING]
+用例ID：WMS_KQGL_02
+请求方式：POST
+URL:/api/v1/warehouse/warehouseArea/add
+用例期望值：success=true,errMessage=null
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_create_area.py:47)
+2022-10-06 19:24:03 [    INFO]___end______end______end______end______end______end___增加库区_备货区___end______end______end___ (test_create_area.py:48)
+2022-10-06 19:24:03 [    INFO]----start--------start--------start--------start--------start--------start----增加库区_存储区----start--------start--------start--------start--------start--------start---- (test_create_area.py:28)
+2022-10-06 19:24:03 [ WARNING]
+用例ID：WMS_KQGL_03
+请求方式：POST
+URL:/api/v1/warehouse/warehouseArea/add
+用例期望值：success=true,errMessage=null
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_create_area.py:47)
+2022-10-06 19:24:03 [    INFO]___end______end______end______end______end______end___增加库区_存储区___end______end______end___ (test_create_area.py:48)
+2022-10-06 19:24:03 [    INFO]----start--------start--------start--------start--------start--------start----增加库区_待检区----start--------start--------start--------start--------start--------start---- (test_create_area.py:28)
+2022-10-06 19:24:03 [ WARNING]
+用例ID：WMS_KQGL_04
+请求方式：POST
+URL:/api/v1/warehouse/warehouseArea/add
+用例期望值：success=true,errCode=null,errMessage=null
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_create_area.py:47)
+2022-10-06 19:24:03 [    INFO]___end______end______end______end______end______end___增加库区_待检区___end______end______end___ (test_create_area.py:48)
+2022-10-06 19:24:03 [    INFO]----start--------start--------start--------start--------start--------start----增加库区_退货区----start--------start--------start--------start--------start--------start---- (test_create_area.py:28)
+2022-10-06 19:24:04 [ WARNING]
+用例ID：WMS_KQGL_05
+请求方式：POST
+URL:/api/v1/warehouse/warehouseArea/add
+用例期望值：success=true,errCode=null,errMessage=null
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_create_area.py:47)
+2022-10-06 19:24:04 [    INFO]___end______end______end______end______end______end___增加库区_退货区___end______end______end___ (test_create_area.py:48)
+2022-10-06 19:24:04 [    INFO]----start--------start--------start--------start--------start--------start----增加库区_冷冻区----start--------start--------start--------start--------start--------start---- (test_create_area.py:28)
+2022-10-06 19:24:04 [ WARNING]
+用例ID：WMS_KQGL_06
+请求方式：POST
+URL:/api/v1/warehouse/warehouseArea/add
+用例期望值：success=true,errCode=null,errMessage=null
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_create_area.py:47)
+2022-10-06 19:24:04 [    INFO]___end______end______end______end______end______end___增加库区_冷冻区___end______end______end___ (test_create_area.py:48)
+2022-10-06 19:24:04 [    INFO]----start--------start--------start--------start--------start--------start----增加库区_冷藏区----start--------start--------start--------start--------start--------start---- (test_create_area.py:28)
+2022-10-06 19:24:04 [ WARNING]
+用例ID：WMS_KQGL_07
+请求方式：POST
+URL:/api/v1/warehouse/warehouseArea/add
+用例期望值：success=true,errCode=null,errMessage=null
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_create_area.py:47)
+2022-10-06 19:24:04 [    INFO]___end______end______end______end______end______end___增加库区_冷藏区___end______end______end___ (test_create_area.py:48)
+2022-10-06 19:24:04 [    INFO]----start--------start--------start--------start--------start--------start----增加库区_报废区----start--------start--------start--------start--------start--------start---- (test_create_area.py:28)
+2022-10-06 19:24:05 [ WARNING]
+用例ID：WMS_KQGL_08
+请求方式：POST
+URL:/api/v1/warehouse/warehouseArea/add
+用例期望值：success=true,errCode=null,errMessage=null
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_create_area.py:47)
+2022-10-06 19:24:05 [    INFO]___end______end______end______end______end______end___增加库区_报废区___end______end______end___ (test_create_area.py:48)
+2022-10-06 19:24:05 [    INFO]----start--------start--------start--------start--------start--------start----查询库区信息----start--------start--------start--------start--------start--------start---- (test_create_area.py:28)
+2022-10-06 19:24:05 [ WARNING]
+用例ID：WMS_KQGL_09
+请求方式：POST
+URL:/api/v1/warehouse/warehouseArea/list/page
+用例期望值：success=true
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_create_area.py:47)
+2022-10-06 19:24:05 [    INFO]___end______end______end______end______end______end___查询库区信息___end______end______end___ (test_create_area.py:48)
+2022-10-06 19:24:05 [    INFO]----start--------start--------start--------start--------start--------start----新增库位----start--------start--------start--------start--------start--------start---- (test_create_area.py:28)
+2022-10-06 19:24:05 [ WARNING]
+用例ID：WMS_KQGL_10
+请求方式：POST
+URL:/api/v1/warehouse/warehouseLocation/add
+用例期望值：success=true
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_create_area.py:47)
+2022-10-06 19:24:05 [    INFO]___end______end______end______end______end______end___新增库位___end______end______end___ (test_create_area.py:48)
+2022-10-06 19:24:05 [    INFO]----start--------start--------start--------start--------start--------start----查询商品信息----start--------start--------start--------start--------start--------start---- (test_create_area.py:28)
+2022-10-06 19:24:06 [ WARNING]
+用例ID：WMS_KQGL_11
+请求方式：POST
+URL:/api/v1/warehouse/warehouseProductRule/list/page
+用例期望值：success=true
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_create_area.py:47)
+2022-10-06 19:24:06 [    INFO]___end______end______end______end______end______end___查询商品信息___end______end______end___ (test_create_area.py:48)
+2022-10-06 19:24:06 [    INFO]----start--------start--------start--------start--------start--------start----新增到货通知单----start--------start--------start--------start--------start--------start---- (test_create_area.py:28)
+2022-10-06 19:24:06 [ WARNING]
+用例ID：WMS_KQGL_12
+请求方式：POST
+URL:/api/v1/warehouse/entry/receipt/save
+用例期望值：success=true
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_create_area.py:47)
+2022-10-06 19:24:06 [    INFO]___end______end______end______end______end______end___新增到货通知单___end______end______end___ (test_create_area.py:48)
+2022-10-06 19:24:06 [    INFO]----start--------start--------start--------start--------start--------start----查询到货通知单----start--------start--------start--------start--------start--------start---- (test_create_area.py:28)
+2022-10-06 19:24:06 [ WARNING]
+用例ID：WMS_KQGL_13
+请求方式：POST
+URL:/api/v1/warehouse/entry/receipt/page
+用例期望值：success=true
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_create_area.py:47)
+2022-10-06 19:24:06 [    INFO]___end______end______end______end______end______end___查询到货通知单___end______end______end___ (test_create_area.py:48)
+2022-10-06 19:24:06 [    INFO]----start--------start--------start--------start--------start--------start----查询指定确认到货通知单----start--------start--------start--------start--------start--------start---- (test_create_area.py:28)
+2022-10-06 19:24:07 [ WARNING]
+用例ID：WMS_KQGL_14
+请求方式：GET
+URL:/api/v1/warehouse/entry/receipt/detail
+用例期望值：success=true
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_create_area.py:75)
+2022-10-06 19:24:07 [    INFO]___end______end______end______end______end______end___查询指定确认到货通知单___end______end______end___ (test_create_area.py:76)
+2022-10-06 19:24:07 [    INFO]----start--------start--------start--------start--------start--------start----确认到货----start--------start--------start--------start--------start--------start---- (test_create_area.py:28)
+2022-10-06 19:24:07 [ WARNING]
+用例ID：WMS_KQGL_15
+请求方式：POST
+URL:/api/v1/warehouse/wmsWarehouseEntry/arrivalConfirmation
+用例期望值：success=true
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_create_area.py:47)
+2022-10-06 19:24:07 [    INFO]___end______end______end______end______end______end___确认到货___end______end______end___ (test_create_area.py:48)
+2022-10-06 19:24:07 [    INFO]----start--------start--------start--------start--------start--------start----查询可选库区类型----start--------start--------start--------start--------start--------start---- (test_basic_inquire.py:23)
+2022-10-06 19:24:07 [ WARNING]
+用例ID：WMS_JCCX_01
+请求方式：get
+URL:/api/v1/basic/dict/item/WH0003/list
+用例期望值：success=true
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_basic_inquire.py:39)
+2022-10-06 19:24:07 [    INFO]___end______end______end______end______end______end___查询可选库区类型___end______end______end___ (test_basic_inquire.py:40)
+2022-10-06 19:24:07 [    INFO]----start--------start--------start--------start--------start--------start----查询可选温区类型----start--------start--------start--------start--------start--------start---- (test_basic_inquire.py:23)
+2022-10-06 19:24:08 [ WARNING]
+用例ID：WMS_JCCX_02
+请求方式：get
+URL:/api/v1/basic/dict/item/WH0004/list
+用例期望值：success=true
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_basic_inquire.py:39)
+2022-10-06 19:24:08 [    INFO]___end______end______end______end______end______end___查询可选温区类型___end______end______end___ (test_basic_inquire.py:40)
+2022-10-06 19:24:08 [    INFO]----start--------start--------start--------start--------start--------start----查询可选库位类型----start--------start--------start--------start--------start--------start---- (test_basic_inquire.py:23)
+2022-10-06 19:24:08 [ WARNING]
+用例ID：WMS_JCCX_03
+请求方式：get
+URL:/api/v1/basic/dict/item/WH0038/list
+用例期望值：success=true
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_basic_inquire.py:39)
+2022-10-06 19:24:08 [    INFO]___end______end______end______end______end______end___查询可选库位类型___end______end______end___ (test_basic_inquire.py:40)
+2022-10-06 19:24:08 [    INFO]----start--------start--------start--------start--------start--------start----查询可选货主----start--------start--------start--------start--------start--------start---- (test_basic_inquire.py:23)
+2022-10-06 19:24:08 [ WARNING]
+用例ID：WMS_JCCX_04
+请求方式：get
+URL:/api/v1/basic/mainInfo/getAllMain?state=1
+用例期望值：success=true
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_basic_inquire.py:39)
+2022-10-06 19:24:08 [    INFO]___end______end______end______end______end______end___查询可选货主___end______end______end___ (test_basic_inquire.py:40)
+2022-10-06 19:24:08 [    INFO]----start--------start--------start--------start--------start--------start----查询可选入库业务类型----start--------start--------start--------start--------start--------start---- (test_basic_inquire.py:23)
+2022-10-06 19:24:09 [ WARNING]
+用例ID：WMS_JCCX_05
+请求方式：get
+URL:/api/v1/basic/dict/item/WH0030/list
+用例期望值：success=true
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_basic_inquire.py:39)
+2022-10-06 19:24:09 [    INFO]___end______end______end______end______end______end___查询可选入库业务类型___end______end______end___ (test_basic_inquire.py:40)
+2022-10-06 19:24:09 [    INFO]----start--------start--------start--------start--------start--------start----查询可用到货方式----start--------start--------start--------start--------start--------start---- (test_basic_inquire.py:23)
+2022-10-06 19:24:09 [ WARNING]
+用例ID：WMS_JCCX_06
+请求方式：get
+URL:/api/v1/basic/dict/item/WO0003/list
+用例期望值：success=true
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_basic_inquire.py:39)
+2022-10-06 19:24:09 [    INFO]___end______end______end______end______end______end___查询可用到货方式___end______end______end___ (test_basic_inquire.py:40)
+2022-10-06 19:24:09 [    INFO]----start--------start--------start--------start--------start--------start----查询可选商品类型----start--------start--------start--------start--------start--------start---- (test_basic_inquire.py:23)
+2022-10-06 19:24:09 [ WARNING]
+用例ID：WMS_JCCX_07
+请求方式：get
+URL:/api/v1/basic/dict/item/WH0037/list
+用例期望值：success=true
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_basic_inquire.py:39)
+2022-10-06 19:24:09 [    INFO]___end______end______end______end______end______end___查询可选商品类型___end______end______end___ (test_basic_inquire.py:40)
+2022-10-06 19:24:09 [    INFO]----start--------start--------start--------start--------start--------start----查询可选出库业务类型----start--------start--------start--------start--------start--------start---- (test_basic_inquire.py:23)
+2022-10-06 19:24:10 [ WARNING]
+用例ID：WMS_JCCX_08
+请求方式：get
+URL:/api/v1/basic/dict/item/WO0001/list
+用例期望值：success=true
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_basic_inquire.py:39)
+2022-10-06 19:24:10 [    INFO]___end______end______end______end______end______end___查询可选出库业务类型___end______end______end___ (test_basic_inquire.py:40)
+2022-10-06 19:24:10 [    INFO]----start--------start--------start--------start--------start--------start----查询发货可选方式类型----start--------start--------start--------start--------start--------start---- (test_basic_inquire.py:23)
+2022-10-06 19:24:10 [ WARNING]
+用例ID：WMS_JCCX_09
+请求方式：get
+URL:/api/v1/basic/dict/item/WO0002/list
+用例期望值：success=true
+实际返回：{"errCode":"11006","errMessage":"无效的token!","success":false} (test_basic_inquire.py:39)
+2022-10-06 19:24:10 [    INFO]___end______end______end______end______end______end___查询发货可选方式类型___end______end______end___ (test_basic_inquire.py:40)
+2022-10-06 19:24:10 [    INFO]----start--------start--------start--------start--------start--------start----开始拷贝日志文件----start--------start--------start--------start--------start--------start---- (conftest.py:28)

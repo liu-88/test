@@ -1,0 +1,16 @@
+{
+  "warehouseId":233,
+  "warehouseName":"o仓库",
+  "outBizType":2,
+  "companyId":1,
+  "companyName":"信息技术部测试",
+  "outBizSn":"yewudanhao",
+  "shipperName":"发货方",
+  "estDeliveryTime":"2022-10-06 10:03:54",
+  "deliveryMethod":1,
+  "remark":"备注",
+  "itemList":
+  [
+    {"id":null,"productName":"测试商品","skuCode":"AAA00001","unit":"件","unitCode":"件","skuAttr":"2.5kg/包*10包","purchaseNum":"100","purchaseWeight":"","weightManage":false,"stockType":1}
+  ]
+}

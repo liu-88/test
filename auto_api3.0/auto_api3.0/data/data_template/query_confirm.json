@@ -1,0 +1,10 @@
+{
+  "dependent": ["receiptId"],
+  "receiptId":{
+    "source": "arrival_info.json",
+    "check": ["check"],
+    "check_source": ["outBizSn"],
+    "source_field": "id"
+  },
+  "check": "JKCSYWDH01"
+}

@@ -1,0 +1,47 @@
+{
+  "dependent": ["entryBillSn","warehouseTaskDetailsList"],
+  "arrivalTime":"2022-10-06 10:22:02",
+  "licensePlateNo":"川A12345",
+  "vehicleType":"接口测试货车",
+  "driverName":"接口测试司机",
+  "driverTelephone":"13122222222",
+  "deliveryBillUrl":[],
+  "entryBillSn":{
+    "source": "arrival_info.json",
+    "check": ["orderNo","orderTypeName"],
+    "check_source": ["outBizSn","outBizTypeName"],
+    "source_field": "entryReceiptSn"
+  },
+  "orderNo":"WSS",
+  "orderType":2,
+  "orderTypeName":"销售退货",
+  "warehouseId":233,
+  "warehouseName":"o仓库",
+  "warehouseTaskDetailsList":
+  [
+    {
+      "dependent": ["entryReceiptItemId"],
+      "productionDate":"2022-10-06",
+      "attribute":"2.5kg/包*10包",
+      "skuName":"测试商品",
+      "skuCode":"AAA00001",
+      "unitName":"件",
+      "unitCode":"件",
+      "urlList":[],
+      "arriveNum":100,
+      "arriveWeight":null,
+      "quantityNum":100,
+      "quantityWeight":0,
+      "weightManage":false,
+      "entryReceiptItemId":
+      {
+        "source": "confirm_info.json",
+        "check": ["skuName"],
+        "check_source": ["productName"],
+        "source_field": "id"
+      },
+      "stockType":1,
+      "batchNo":null
+    }
+  ]
+}
